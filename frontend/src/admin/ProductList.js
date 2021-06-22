@@ -8,6 +8,7 @@ import LoadingBox from '../Home/LoadingBox';
 import MessageBox from '../Home/MessageBox';
 
 const ProductList = (props) => {
+    const sellerMode = props.match.path.indexOf('/seller')>=0;
     const productList = useSelector(state=>state.productList);
     const {loading,error,products}= productList;
 
@@ -18,6 +19,9 @@ const ProductList = (props) => {
    
     const productDelete =useSelector(state=>state.productDelete);
     const {loading:loadingDelete,error:errorDelete,success:successDelete} = productDelete;
+
+    const userSignin =useSelector(state=>state.userSignin);
+    const {userInfo}=userSignin;
 
     const deleteHandler=(productId)=>{
         if(window.confirm("Are you sure you want to delete"))
@@ -41,8 +45,8 @@ const ProductList = (props) => {
         {
             dispatch({type:PRODUCT_DELETE_RESET});
         }
-        dispatch(listProducts());
-    },[createdProduct,dispatch,props.history,successCreate,successDelete]);
+        dispatch(listProducts({seller:sellerMode?userInfo._id :''}));
+    },[createdProduct,dispatch,props.history,sellerMode,successCreate,successDelete,userInfo._id]);
 
     return (
         <div>

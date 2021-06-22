@@ -11,7 +11,7 @@ const NavBar = ({cartItems,userInfo}) => {
     const burgertoggle = () => {
       const burger = document.querySelector(".burger");
       const nav = document.querySelector(".nav-main");
-  
+    
       nav.classList.toggle("navActive");
       burger.classList.toggle("toggle");
     };
@@ -79,6 +79,18 @@ const NavBar = ({cartItems,userInfo}) => {
                   <Link to="/signin">Sign In</Link> 
                 )
                
+            }
+            {
+              userInfo && userInfo.isSeller &&
+              <div className="dropdown">
+              <Link to="#admin" >Seller{' '} <i className="fa fa-caret-down down"></i></Link>
+              <ul className="dropdown-small">
+           
+                <li><Link to="/productlist/seller">Products</Link></li>
+                <li><Link to="/orderlist/seller">Orders</Link></li>
+           
+              </ul>
+              </div>
             }
             {userInfo && userInfo.isAdmin && (
               <div className="dropdown">

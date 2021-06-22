@@ -19,6 +19,7 @@ import PrivateRoute from './components/PrivateRoute';
 import ProductsView from './components/ProductsView';
 import UserList from './admin/UserList';
 import AdminRoute from './components/AdminRoute';
+import SellerRoute from './components/SellerRoute';
 import UserEdit from './admin/UserEdit';
 import ProductList from './admin/ProductList';
 import ProductEditView from './admin/ProductEditView';
@@ -52,8 +53,10 @@ function App() {
         <PrivateRoute path="/profile" component={ProfileView}></PrivateRoute>
         <AdminRoute path="/userlist" component={UserList}></AdminRoute>
         <AdminRoute path="/user/:id/edit" component={UserEdit}></AdminRoute>
-        <AdminRoute path="/productlist" component={ProductList}></AdminRoute>
-        <AdminRoute path="/orderlist" component={OrderListView}></AdminRoute>
+        <AdminRoute path="/productlist" exact component={ProductList}></AdminRoute>
+        <AdminRoute path="/orderlist" exact component={OrderListView}></AdminRoute>
+        <SellerRoute path="/productlist/seller" component={ProductList}/>
+        <SellerRoute path="/orderlist/seller" component={OrderListView}/>
 
     </main>
     <footer>

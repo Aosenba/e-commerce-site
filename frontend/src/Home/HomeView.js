@@ -17,7 +17,7 @@ const HomeView = () => {
 
 
   useEffect(()=>{
-         dispatch(listProducts());
+         dispatch(listProducts({}));
   },[dispatch]);
   
     return (

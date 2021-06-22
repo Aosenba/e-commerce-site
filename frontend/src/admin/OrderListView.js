@@ -9,11 +9,13 @@ import MessageBox from '../Home/MessageBox';
 
 const OrderListView = (props) => {
 
+    const sellerMode = props.match.path.indexOf('/seller')>=0;
     const orderList =useSelector(state=>state.orderList);
     const {loading,error,orders} = orderList;
     const orderDelete = useSelector(state=>state.orderDelete);
     const {loading:loadingDelete, error:errorDelete,success:successDelete} = orderDelete;
- 
+    const userSignin =useSelector(state=>state.userSignin);
+    const {userInfo}=userSignin;
     const deleteHandler =(orderId)=>
     {
         if(window.confirm("Are you sure you want to delete"))
@@ -25,9 +27,9 @@ const OrderListView = (props) => {
     const dispatch = useDispatch();
     useEffect(()=>
     {
-        dispatch(listOrders());
+        dispatch(listOrders({seller :sellerMode?userInfo._id :''}));
         dispatch({type:ORDER_DELETE_RESET});
-    },[dispatch,successDelete]);
+    },[dispatch,successDelete,sellerMode,userInfo]);
     
     return (
         <div className="order-history">

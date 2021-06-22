@@ -11,7 +11,9 @@ const ProfileView = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
- 
+    const [sellerName, setSellerName] = useState('');
+    const [logo, setLogo] = useState('');
+    const [description, setDescription] = useState('');
 
     const userSignin = useSelector(state=>state.userSignin);
     const {userInfo} = userSignin; 
@@ -30,6 +32,12 @@ const ProfileView = () => {
         else{
             setName(user.name);
             setEmail(user.email);
+            if(user.seller)
+            {
+                setSellerName(user.seller.name);
+                setLogo(user.seller.logo);
+                setDescription(user.seller.description);
+            }
         }
       
 
@@ -43,7 +51,8 @@ const ProfileView = () => {
            alert("passwords do not match")
        }
        else{
-           dispatch(updateUserProfile({userId:user._id,name,email,password}));
+           dispatch(updateUserProfile({userId:user._id,name,email,password,sellerName,logo,description}));
+
        }
 
     };
@@ -90,6 +99,34 @@ const ProfileView = () => {
                        onChange={(e)=>setConfirmPassword(e.target.value)}
                        ></input>
                    </div>
+                   {
+                       user.isSeller && (
+                           <>
+                            <h2>Seller</h2>
+                            <div>
+                                <label htmlFor="sellerName">Seller Name</label>
+                                <input id="sellerName" type="text" placeholder="enter your name"
+                                value={sellerName} onChange={(e)=>setSellerName(e.target.value)}>
+
+                                </input>
+                            </div>
+                            <div>
+                                <label htmlFor="logo">Logo</label>
+                                <input id="logo" type="text" placeholder="enter your Logo"
+                                value={logo} onChange={(e)=>setLogo(e.target.value)}>
+                                    
+                                </input>
+                            </div>
+                            <div>
+                                <label htmlFor="description">Description</label>
+                                <input id="description" type="text" placeholder="enter Description"
+                                value={description} onChange={(e)=>setDescription(e.target.value)}>
+                                    
+                                </input>
+                            </div>
+                           </>
+                       )
+                   }
                    <div>
                        <label></label>
                        <button className="primary">Update</button>
