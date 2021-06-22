@@ -9,6 +9,7 @@ import path from 'path';
 
 dotenv.config();
 
+const __dirname = path.resolve();
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended : true}));
@@ -38,7 +39,6 @@ app.use((err,req,res,next)=>
     res.status(500).send({message : err.message});
 });
 
-const __dirname = path.resolve();
 app.use('/uploads',express.static(path.join(__dirname,'/uploads')));
 const port = process.env.PORT || 5000;
 
