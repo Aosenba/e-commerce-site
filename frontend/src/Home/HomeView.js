@@ -39,15 +39,15 @@ const HomeView = () => {
        : (
          <>
         {topSellers.length===0 && <MessageBox variant="danger">No sellers found</MessageBox>}
-         <Carousel showArrows autoPlay showThumbs={false}>
-           {topSellers.map((seller)=>(
+         <Carousel showArrows autoPlay autoFocus dynamicHeight={false} showThumbs={false}>
+           {/* {topSellers.map((seller)=>(
              <div key={seller._id}>
                <Link to={`/seller/${seller._id}`}>
                 <img  src={seller.seller.logo} alt={seller.seller.name}/>
                 <p className="legend">{seller.seller.name}</p>
                </Link>
              </div>
-           ))}
+           ))} */}
          </Carousel>
         
         </>

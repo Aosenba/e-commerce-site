@@ -17,7 +17,7 @@ const ProductView = (props) => {
     const addToCartHandler =()=>{
         props.history.push(`/cart/${productId}?qty=${qty}`);
     }
-
+  console.log(product)
 
     return (
         <div>

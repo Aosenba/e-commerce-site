@@ -208,7 +208,9 @@ align-items: flex-start;
 {
   min-width: 30rem;
 }
-
+.legend{
+  background-color: #0b6923;
+}
 img.small
 {
   max-width: 5rem;
