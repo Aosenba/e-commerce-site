@@ -115,7 +115,9 @@ header a:hover{
 }
 
 .carousel .slide img{
-  max-width: 30rem;
+
+  max-width: 50rem;
+  height: 30rem;
 }
 
 .burger div {

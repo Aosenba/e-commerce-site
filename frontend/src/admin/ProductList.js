@@ -14,7 +14,7 @@ const ProductList = (props) => {
 
     const productCreate = useSelector(state=>state.productCreate);
     const {loading:loadingCreate,error:errorCreate,success:successCreate,product:createdProduct} = productCreate;
-
+     console.log(products)
     const dispatch = useDispatch();
    
     const productDelete =useSelector(state=>state.productDelete);
@@ -69,7 +69,7 @@ const ProductList = (props) => {
             <table className="table">
                 <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>Seller Name</th>
                     <th>Name</th>
                     <th>Price</th>
                     <th>Category</th>
@@ -83,7 +83,7 @@ const ProductList = (props) => {
                        products.map((product,idx)=>(
                         
                            <tr key={product._id}>
-                               <td>{product._id}</td>
+                               <td>{product.seller.seller.name}</td>
                                <td>{product.name}</td>
                                <td>{product.price}</td>
                                <td>{product.category}</td>

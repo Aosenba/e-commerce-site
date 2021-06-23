@@ -17,9 +17,10 @@ const HomeView = () => {
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.productList);
   const {loading, error, products} = productList;
+  
   const topSellersList = useSelector((state) => state.topSellersList);
   const {loading:loadingSellers, error:errorSellers,topSellers} = topSellersList;
- 
+   console.log(topSellers)
 
   useEffect(()=>{
 

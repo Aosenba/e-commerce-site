@@ -6,6 +6,8 @@ import { detailsUser, updateUserProfile } from '../actions/userActions';
 import { PROFILE_UPDATE_RESET } from '../constants/userConstants';
 import LoadingBox from '../Home/LoadingBox';
 import MessageBox from '../Home/MessageBox';
+import Axios from 'axios';
+
 const ProfileView = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -23,6 +25,29 @@ const ProfileView = () => {
     const {error:updateError,success:updateSuccess,loading:updateLoading} = updateProfile;
   
     const dispatch = useDispatch();
+    
+    const [loadingUpload, setLoadingUpload] = useState(false);
+    const [errorUpload, setErrorUpload] = useState(false);
+    const uploadFileHandler =async(e)=>
+    {
+        const file = e.target.files[0];
+        const bodyFormData = new FormData();
+        bodyFormData.append('image',file);
+        setLoadingUpload(true);
+        try {
+            const {data} = await Axios.post('/api/uploads',bodyFormData,{
+                headers :{
+                    'Content-Type':'multipart/form-data',
+                    Authorization : `Bearer ${userInfo.token}`,
+                }
+            })
+            setLogo(data);
+            setLoadingUpload(false);
+        } catch (error) {
+            setErrorUpload(error.message)
+            setLoadingUpload(false);
+        }
+    };
     useEffect(()=>{
         if(!user)
         {
@@ -41,7 +66,7 @@ const ProfileView = () => {
         }
       
 
-    },[dispatch,userInfo._id,user,updateSuccess]);
+    },[dispatch,userInfo._id,user,updateSuccess,]);
 
     const onSubmitHandler =(e)=>
     {
@@ -110,13 +135,18 @@ const ProfileView = () => {
 
                                 </input>
                             </div>
+                    
                             <div>
                                 <label htmlFor="logo">Logo</label>
-                                <input id="logo" type="text" placeholder="enter your Logo"
-                                value={logo} onChange={(e)=>setLogo(e.target.value)}>
-                                    
-                                </input>
+                                <input type="file" id="logo" label="select Logo" onChange={uploadFileHandler}></input>
+                                {loadingUpload && <LoadingBox/>}
+                                {errorUpload && <MessageBox variant="danger">{errorUpload}</MessageBox>}
                             </div>
+                            <div>
+                                    <label  htmlFor="logo">Image</label>
+                                    <input type="text" id="logo" value={logo} placeholder="Enter image file" 
+                                    onChange={e=>setLogo(e.target.value)}></input>
+                           </div>
                             <div>
                                 <label htmlFor="description">Description</label>
                                 <input id="description" type="text" placeholder="enter Description"

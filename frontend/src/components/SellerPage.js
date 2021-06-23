@@ -14,7 +14,7 @@ const SellerPage = (props) => {
     const dispatch = useDispatch();
     const userDetails = useSelector((state)=>state.userDetails);
     const {loading,error,user} = userDetails;
-
+     console.log(user)
     const productList = useSelector((state)=>state.productList);
     const {loading:loadingProducts,error:errorProducts,products} = productList;
 
