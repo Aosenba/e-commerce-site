@@ -21,11 +21,11 @@ const Product = (props) => {
             <Rating rating={product.rating} numReviews={product.numReviews}/>
             <div className="row">
             <h4><i className="fa fa-inr"></i> {product.price}</h4>
-            {/* <div>
+            <div>
                 <Link to={`/seller/${product.seller._id}`}>
                     {product.seller.seller.name}
                 </Link>
-            </div> */}
+            </div>
             </div>
           
        </div>
