@@ -41,7 +41,7 @@ const ProfileView = () => {
         }
       
 
-    },[dispatch,userInfo._id,user]);
+    },[dispatch,userInfo._id,user,updateSuccess]);
 
     const onSubmitHandler =(e)=>
     {

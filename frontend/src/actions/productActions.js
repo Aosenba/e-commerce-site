@@ -50,7 +50,7 @@ export const createProduct =()=>async(dispatch,getState)=>{
              Authorization :  `Bearer ${userInfo.token}`
          }
      });
-     dispatch({type:PRODUCT_CREATE_SUCCESS,payload:data.product })
+     dispatch({type:PRODUCT_CREATE_SUCCESS,payload:data.product });
         
     } catch (error) {
         dispatch({type:PRODUCT_CREATE_FAILED,
@@ -91,7 +91,7 @@ export const deleteProduct =(productId)=>async(dispatch,getState)=>
                     Authorization:`Bearer ${userInfo.token}`
                 }
             });
-            dispatch({type:PRODUCT_DELETE_SUCCESS });
+            dispatch({type:PRODUCT_DELETE_SUCCESS ,product:data});
     } catch (error) {
         const message= error.reponse && error.response.data.message?
         error.reponse.data.message : error.message ;

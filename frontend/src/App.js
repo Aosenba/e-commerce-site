@@ -24,6 +24,7 @@ import UserEdit from './admin/UserEdit';
 import ProductList from './admin/ProductList';
 import ProductEditView from './admin/ProductEditView';
 import OrderListView from './admin/OrderListView';
+import SellerPage from './components/SellerPage';
 function App() {
 
 
@@ -50,6 +51,7 @@ function App() {
         <Route path="/order/:id" component={OrderReview}/>
         <Route path="/orderhistory" component={OrderHistory}/>
         <Route path="/products/:id" component={ProductsView}/>
+        <Route path="/seller/:id" component={SellerPage}/>
         <PrivateRoute path="/profile" component={ProfileView}></PrivateRoute>
         <AdminRoute path="/userlist" component={UserList}></AdminRoute>
         <AdminRoute path="/user/:id/edit" component={UserEdit}></AdminRoute>
@@ -57,6 +59,7 @@ function App() {
         <AdminRoute path="/orderlist" exact component={OrderListView}></AdminRoute>
         <SellerRoute path="/productlist/seller" component={ProductList}/>
         <SellerRoute path="/orderlist/seller" component={OrderListView}/>
+        
 
     </main>
     <footer>

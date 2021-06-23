@@ -56,10 +56,12 @@ const ProductList = (props) => {
                 Create Product
             </button>
             </div>
+            <br/>
             {loadingDelete && <LoadingBox/>}
-            {errorDelete && <MessageBox variant="danger">{error}</MessageBox>}
+            {errorDelete && <MessageBox variant="danger">{errorDelete}</MessageBox>}
             {loadingCreate && <LoadingBox/>}
-            {errorCreate && <MessageBox variant="danger">{error}</MessageBox>}
+            {errorCreate && <MessageBox variant="danger">{errorCreate}</MessageBox>}
+            <br/>
             {loading?<LoadingBox></LoadingBox>
             :
              error? <MessageBox variant="danger">{error}</MessageBox>

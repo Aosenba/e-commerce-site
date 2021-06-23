@@ -6,14 +6,11 @@ import { generateToken, isAdmin, isAuth } from '../utils.js';
 
 const userRouter = express.Router();
 
-// userRouter.get('/seed',
-// expressAsyncHandler(async(req,res)=>
-// {
-   
-//     const createdUsers = await User.insertMany(data.users);
-//     res.send({createdUsers});
-// } ) 
-// );
+userRouter.get('/top-sellers',expressAsyncHandler(async(req,res)=>
+{
+    const topSellers = await User.find({isSeller:true}).sort({'seller-rating':-1}).limit(3);
+    res.send(topSellers);
+}))
 
 userRouter.post('/signin',expressAsyncHandler(async(req,res)=>
 {
@@ -85,6 +82,7 @@ userRouter.put('/profile',isAuth,expressAsyncHandler(async(req,res)=>
             email : updatedUser.email,
             isAdmin : updatedUser.isAdmin,
             isSeller:user.isSeller,
+            seller : user.seller,
             token : generateToken(updatedUser),
         });
     }

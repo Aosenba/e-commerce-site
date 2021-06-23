@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { signout } from '../actions/userActions';
 import Categories from './Categories';
+import feathers from './feathers.png';
 
 const NavBar = ({cartItems,userInfo}) => {
 
@@ -43,6 +44,7 @@ const NavBar = ({cartItems,userInfo}) => {
                 <div className="l3"></div>
         </div>
         <div className="logo">
+        <img src={feathers} alt="logo"/>
             <Link to="/">Vicarious</Link>
         </div>
         <div className="nav-main">

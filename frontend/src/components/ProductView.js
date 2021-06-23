@@ -9,12 +9,7 @@ const ProductView = (props) => {
     const [qty, setQty]= useState(1);
     const dispatch = useDispatch();
     const productId= props.match.params.id;
-
-   
     const {loading,error,product} =useSelector((state)=>state.productDetails);
- 
-   
-
     useEffect(() => {
        dispatch(detailsProduct(productId));
     }, [dispatch, productId]);
@@ -46,6 +41,17 @@ const ProductView = (props) => {
             <div className="col-1">
                 <div className="card card-body">
                     <ul>
+                        <li>
+                            Seller
+                            <h2>
+                                <Link to={`/seller/${product.seller._id}`}>
+                                    {product.seller.seller.name}
+                                </Link>
+                            </h2>
+                            <Rating rating={product.seller.seller.rating} 
+                            numReviews={product.seller.seller.numReviews}
+                            />
+                        </li>
                         <li>
                             <div className="row">
                                 <div>Price</div>

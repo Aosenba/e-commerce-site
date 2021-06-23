@@ -10,20 +10,22 @@ productRouter.get('/',expressAsyncHandler(async(req,res)=>
 {
     const seller = req.query.seller || '';
     const sellerFilter = seller ? {seller} : {}; 
-    const products = await Product.find({...sellerFilter}); 
+    const products = await Product.find({...sellerFilter}).populate('seller','seller.name seller.logo'); 
     res.send(products);
 })); 
 
 
-// productRouter.get('/seed', expressAsyncHandler(async(req,res)=>
-// { 
-//     const createdProducts = await Product.insertMany(data.products);
-//     res.send({createdProducts});
-// }));
+productRouter.get('/seed', expressAsyncHandler(async(req,res)=>
+{ 
+    const createdProducts = await Product.insertMany(data.products);
+    res.send({createdProducts});
+}));
 
 productRouter.get('/:id',expressAsyncHandler(async(req,res)=>
 {
-    const product = await Product.findById(req.params.id);
+    const product = await Product.findById(req.params.id).populate('seller',
+    'seller.name seller.logo seller.rating seller.numReviews'); 
+    res.send(product);;
     if(product)
     {
         res.send(product);
@@ -35,7 +37,7 @@ productRouter.get('/:id',expressAsyncHandler(async(req,res)=>
 
 }));
 
-productRouter.post('/',isAuth,isSellerOrAdmin,isSeller,expressAsyncHandler(async(req,res)=>
+productRouter.post('/',isAuth , isSellerOrAdmin,expressAsyncHandler(async(req,res)=>
 {
     const product = new Product({
         name:"demo" + Date.now(),
@@ -54,7 +56,7 @@ productRouter.post('/',isAuth,isSellerOrAdmin,isSeller,expressAsyncHandler(async
     res.send({message:"product created",product:createdProduct});
 }));
 
-productRouter.put('/:id',isAuth,isAdmin,isSellerOrAdmin,expressAsyncHandler(async(req,res)=>{
+productRouter.put('/:id',isAuth,isSellerOrAdmin,expressAsyncHandler(async(req,res)=>{
     const productId = req.params.id;
     const product = await Product.findById(productId);
     if(product)
@@ -74,7 +76,7 @@ productRouter.put('/:id',isAuth,isAdmin,isSellerOrAdmin,expressAsyncHandler(asyn
     }
 })); 
 
-productRouter.delete('/:id',isAuth,isAdmin,expressAsyncHandler(async(req,res)=>
+productRouter.delete('/:id',isAuth,isSellerOrAdmin,expressAsyncHandler(async(req,res)=>
 {
     const product = await Product.findById(req.params.id);
     if(product)

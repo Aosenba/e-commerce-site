@@ -31,6 +31,10 @@ h1{
   width: 100%;
  
 }
+.logo img{
+   max-height: 7rem;
+  max-width: 7rem;
+}
 .grid-container
 {
   display: grid;
@@ -102,12 +106,16 @@ header a:hover{
   padding: 1rem;
 }
 
-.carousel
+.home-card
 {
  display: flex;
  align-items: center;
  justify-content:center;
  position: relative;
+}
+
+.carousel .slide img{
+  max-width: 30rem;
 }
 
 .burger div {
@@ -121,6 +129,7 @@ header a:hover{
 }
 
 .burger {
+  position: absolute;
   display: none;
   margin: 0;
   width: 10%;
@@ -168,6 +177,10 @@ a{
 {
   justify-content: center;
 }
+.row.start
+{
+  justify-content: flex-start;
+}
 .row.top
 {
 align-items: flex-start;
@@ -181,6 +194,15 @@ align-items: flex-start;
   color: white;
   flex: 2 1 50rem;
 
+}
+.col-3
+{
+  color: white;
+  flex: 3 1 75rem;
+}
+.p-1
+{
+  padding: 1rem;
 }
 .min-30
 {
@@ -280,6 +302,8 @@ button.primary
   color: white;
   font-weight: bold;
   font-size: 22px;
+  outline: none;
+  border: none;
 }
 button.block
 {
@@ -682,13 +706,17 @@ button.small
 }
 @media screen and (max-width:1024px)
 {
+  header{
+    grid-template-columns: 1fr;
+  }
    .logo
   {
- 
+   height: 100%;
   display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: center;
    }
+
 
    header
    {

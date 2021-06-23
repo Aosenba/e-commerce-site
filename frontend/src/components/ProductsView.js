@@ -12,7 +12,6 @@ const ProductsView = (props) => {
     const {products,error,loading}=productList;
     const productCategory= props.match.params.id;
     const dispatch = useDispatch();
-    console.log(productList)
     useEffect(() => {
         dispatch(detailsProduct(productCategory));
      }, [dispatch, productCategory]);
