@@ -1,0 +1,2 @@
+
+mongodb+srv://vicarious:vicarious@cluster0.vcwuh.mongodb.net/vicarious?retryWrites=true&w=majority
