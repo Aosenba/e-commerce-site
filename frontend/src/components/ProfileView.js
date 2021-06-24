@@ -49,7 +49,7 @@ const ProfileView = () => {
         }
     };
     useEffect(()=>{
-        if(!user || updateSuccess)
+        if(!user)
         {
             dispatch({type:PROFILE_UPDATE_RESET});
             dispatch(detailsUser(userInfo._id));
@@ -62,11 +62,12 @@ const ProfileView = () => {
                 setSellerName(user.seller.name);
                 setLogo(user.seller.logo);
                 setDescription(user.seller.description);
-            }
+                dispatch({type:PROFILE_UPDATE_RESET});
+            } 
         }
       
 
-    },[dispatch,userInfo._id,user,updateSuccess,]);
+    },[dispatch,userInfo._id,user]);
 
     const onSubmitHandler =(e)=>
     {

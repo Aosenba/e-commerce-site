@@ -99,15 +99,15 @@ const ProductEditView = (props) => {
                        onChange={e=>setName(e.target.value)}></input>
                    </div>
                    <div>
-                       <label  htmlFor="image">Image</label>
-                       <input type="text" id="image" value={image} placeholder="Enter image file" 
-                       onChange={e=>setImage(e.target.value)}></input>
-                   </div>
-                   <div>
                        <label htmlFor="imageFile">Image file</label>
                        <input type="file" id="imageFile" label="select Image" onChange={uploadFileHandler}></input>
                        {loadingUpload && <LoadingBox/>}
                        {errorUpload && <MessageBox variant="danger">{errorUpload}</MessageBox>}
+                   </div>
+                   <div>
+                       <label  htmlFor="image">Image</label>
+                       <input type="text" id="image" value={image} placeholder="Enter image file" 
+                       onChange={e=>setImage(e.target.value)}></input>
                    </div>
                    <div>
                        <label  htmlFor="price">Price</label>

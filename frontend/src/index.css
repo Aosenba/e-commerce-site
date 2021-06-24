@@ -17,9 +17,10 @@ body
   background:linear-gradient(90deg,#131314,#2f2f30) ;
   
 }
-h1{
+h1,h3{
   color: white;
 }
+
 #root
 {
   height: 100%;
@@ -50,7 +51,7 @@ header{
   grid-area: header;
    height: 12rem;
   display: grid;
-  grid-template-columns: 3fr 4fr;
+  grid-template-columns:5rem 2fr 3fr 4fr;
   align-items: center;
   position:fixed;
   top:0;
@@ -95,9 +96,9 @@ header a{
 }
 .onScroll
 {
-   background-color: #29292ccb;
+   background-color: #1b1b1f;
 
-   height: 8vh;
+   height: 9vh;
    box-shadow: 0px 0px 3px 1px black;
 }
 
@@ -132,6 +133,7 @@ header a:hover{
 
 .burger {
   position: absolute;
+   right: 0rem;
   display: none;
   margin: 0;
   width: 10%;
@@ -149,7 +151,54 @@ header a:hover{
 .toggle .l3 {
   transform: rotate(45deg) translate(-4px, -6px);
 }
-
+/* aside */
+aside{
+  position: fixed;
+  width: 30rem;
+  height: 100%;
+  background-color: rgba(12, 11, 11, 0.772);
+  backdrop-filter: blur(3px);
+  z-index: 1000;
+  transform: translateX(-30rem);
+  transition: all 0.3s;
+}
+aside.open{
+  transform: translateX(0);
+}
+button.open-sidebar{
+  font-size: 2.5rem;
+  padding: .2rem .5rem;
+  margin: 0 .5rem;
+  background: none;
+  color: #66fcf1;
+ cursor: pointer;
+}
+button.open-sidebar:hover{
+  border-color: #ffffff;
+}
+aside ul{
+  padding: 0;
+  list-style: none;
+}
+aside li{
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+button.close-sidebar{
+  font-size: 2.5rem;
+  padding: .3rem .8rem;
+  background-color: transparent;
+  color: #66fcf1;
+  cursor: pointer;
+}
+button.close-sidebar:hover{
+border-color: #ffffff;
+}
+strong{
+  color:#ffffff;
+  font-size: 2rem;
+}
 main{
   grid-area: main;
   padding: 1rem;
@@ -275,6 +324,13 @@ ul{
  li{
   margin: 2rem 2rem;
 }
+li a{
+  color: white;
+  transition: all .2s;
+}
+li a:hover{
+  transform: scale(1.1) translateX(1rem);
+}
 input,
 select,textarea
 button{
@@ -287,7 +343,7 @@ button{
   -moz-osx-font-smoothing: grayscale;
   font-size: 14px;
   outline: none;
-  box-shadow: 0px 0px 3px 1px grey;
+  box-shadow: 0px 0px 4px 1px black;
 }
 select{
   box-shadow: 0px 0px 3px 1px black;
@@ -319,6 +375,31 @@ button.primary:hover{
   
  
 }
+.search-btn
+{
+  background-color: #33d8d0;
+  padding: 0.3rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  font-size: 22px;
+  outline: none;
+  border: none;
+  box-shadow: 0px 0px 3px 1px black;
+}
+.search{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-left: 2rem;
+}
+
+.search button
+{
+  border-radius:  0 0.5rem 0.5rem 0 ;
+} 
 .deleteBtn
 {
   background-color: rgb(216, 36, 36);
@@ -712,23 +793,29 @@ button.small
 @media screen and (max-width:1024px)
 {
   header{
-    grid-template-columns: 1fr;
+    grid-template-columns: 5rem 5rem 2fr;
   }
+  
    .logo
   {
    height: 100%;
+   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
    }
-
+   
+   .logo-name{
+     display: none;
+   }
+  
 
    header
    {
-     height: 7rem;
+     height: 8rem;
    }
    .onScroll{
-     height: 5rem;
+     height: 6rem;
    }
    .nav-main{
      background-color: rgba(0, 0, 0, 0.479);
@@ -736,7 +823,7 @@ button.small
      width: 100%;
      display: block;
      top:0%;
-     transform: translateX(-100%); 
+     transform: translateX(100%); 
      transition: all .2s;   
      padding: 0;
      height: 100vh;
@@ -748,6 +835,10 @@ button.small
         background-color: #171e22;
         width: 50%;       
         height: 100%;
+        float:right;
+    }
+    .active{
+      color:#ffffff;
     }
     .navActive
     {

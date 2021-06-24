@@ -1,4 +1,4 @@
-import { PRODUCT_CREATE_FAILED, PRODUCT_CREATE_REQUEST, PRODUCT_CREATE_RESET, PRODUCT_CREATE_SUCCESS, PRODUCT_DELETE_FAILED, PRODUCT_DELETE_REQUEST, PRODUCT_DELETE_RESET, PRODUCT_DELETE_SUCCESS, PRODUCT_DETAILS_FAILED, PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_LIST_FAILED, PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_UPDATE_FAILED, PRODUCT_UPDATE_REQUEST, PRODUCT_UPDATE_RESET, PRODUCT_UPDATE_SUCCESS } from "../constants/productConstants";
+import { PRODUCT_CATEGORY_LIST_FAILED, PRODUCT_CATEGORY_LIST_REQUEST, PRODUCT_CATEGORY_LIST_SUCCESS, PRODUCT_CREATE_FAILED, PRODUCT_CREATE_REQUEST, PRODUCT_CREATE_RESET, PRODUCT_CREATE_SUCCESS, PRODUCT_DELETE_FAILED, PRODUCT_DELETE_REQUEST, PRODUCT_DELETE_RESET, PRODUCT_DELETE_SUCCESS, PRODUCT_DETAILS_FAILED, PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_LIST_FAILED, PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_UPDATE_FAILED, PRODUCT_UPDATE_REQUEST, PRODUCT_UPDATE_RESET, PRODUCT_UPDATE_SUCCESS } from "../constants/productConstants";
 
 export const productListReducers = (state = {loading:true, products :[]}, action) =>{
     switch(action.type)
@@ -75,5 +75,19 @@ export const productsDeleteReducer =(state={},action)=>
         default:
             return state;
         
+    }
+};
+
+export const productCategoryListReducers = (state = {loading:true, products :[]}, action) =>{
+    switch(action.type)
+    {
+        case PRODUCT_CATEGORY_LIST_REQUEST:
+            return {loading:true};
+        case PRODUCT_CATEGORY_LIST_SUCCESS:
+            return {loading:false,categories:action.payload};
+        case PRODUCT_CATEGORY_LIST_FAILED:
+            return {loading:false, error:action.payload};
+        default:
+            return state;
     }
 };

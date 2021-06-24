@@ -20,7 +20,7 @@ const HomeView = () => {
   
   const topSellersList = useSelector((state) => state.topSellersList);
   const {loading:loadingSellers, error:errorSellers,topSellers} = topSellersList;
-   console.log(topSellers)
+
 
   useEffect(()=>{
 
