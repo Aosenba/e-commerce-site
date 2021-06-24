@@ -49,7 +49,7 @@ const ProfileView = () => {
         }
     };
     useEffect(()=>{
-        if(!user)
+        if(!user || updateSuccess)
         {
             dispatch({type:PROFILE_UPDATE_RESET});
             dispatch(detailsUser(userInfo._id));

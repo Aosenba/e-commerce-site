@@ -22,8 +22,8 @@ const Product = (props) => {
             <div className="row">
             <h4><i className="fa fa-inr"></i> {product.price}</h4>
             <div>
-                <Link to={`/seller/${product.seller._id}`}>
-                    {product.seller.seller.name}
+                <Link to={product.seller._id?`/seller/${product.seller._id}`:''}>
+                    {product.seller.seller.name?product.seller.seller.name:"sample"}
                 </Link>
             </div>
             </div>
