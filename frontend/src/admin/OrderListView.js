@@ -16,6 +16,7 @@ const OrderListView = (props) => {
     const {loading:loadingDelete, error:errorDelete,success:successDelete} = orderDelete;
     const userSignin =useSelector(state=>state.userSignin);
     const {userInfo}=userSignin;
+    console.log(orders)
     const deleteHandler =(orderId)=>
     {
         if(window.confirm("Are you sure you want to delete"))
@@ -43,7 +44,7 @@ const OrderListView = (props) => {
             <table className="table">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>Sl.No</th>
                         <th>USER</th>
                         <th>DATE</th>
                         <th>TOTAL</th>
@@ -53,11 +54,11 @@ const OrderListView = (props) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {orders.map((order)=>(
+                    {orders.map((order,idx)=>(
                         <tr key={order._id}>
-                            <td>{order._id}</td>
+                            <td>{idx+1}</td>
                             <td>{order.user.name}</td>
-                            <td>{order.createdAt}</td>
+                            <td>{order.createdAt.slice(0,10)}</td>
                             <td>{order.totalPrice}</td>
                             <td>{order.isPaid? "yes": "No"}</td>
                             <td>{order.isDelivered?"yes": "No"}</td>

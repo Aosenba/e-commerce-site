@@ -9,6 +9,7 @@ const OrderHistory = (props) => {
     const myorderList =useSelector(state=>state.myOrderList);
     const {loading, error, orders} = myorderList;
      const dispatch = useDispatch();
+     console.log(orders)
      useEffect(()=>
      {
          dispatch(myOrderList());
@@ -24,7 +25,7 @@ const OrderHistory = (props) => {
                 <table className="table">
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            <th>Customer Name</th>
                             <th>DATE</th>
                             <th>TOTAL</th>
                             <th>PAID</th>
@@ -35,8 +36,8 @@ const OrderHistory = (props) => {
                     <tbody>
                         {orders.map((order)=>(
                             <tr key={order._id}>
-                                <td>{order._id}</td>
-                                <td>{order.createdAt}</td>
+                                <td>{order.shippingAddress.fullName}</td>
+                                <td>{order.createdAt.slice(0,10)}</td>
                                 <td>{order.totalPrice}</td>
                                 <td>{order.isPaid? "yes": "No"}</td>
                                 <td>{order.isDelivered?"yes": "No"}</td>

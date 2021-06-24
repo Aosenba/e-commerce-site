@@ -35,7 +35,7 @@ orderRouter.post('/',isAuth, expressAsyncHandler(async(req,res)=>{
     }
 }));
 
-orderRouter.get('/:id',isAuth, expressAsyncHandler(async(req,res)=>
+orderRouter.get('/:id',isAuth,isSellerOrAdmin, expressAsyncHandler(async(req,res)=>
 {
     const order =await Order.findById(req.params.id)
     if(order)
@@ -69,7 +69,7 @@ orderRouter.put('/:id/pay',isAuth,expressAsyncHandler(async(req,res)=>
     }
 }));
 
-orderRouter.get('/',isAuth,isAdmin,isSellerOrAdmin,expressAsyncHandler(async(req,res)=>
+orderRouter.get('/',isAuth,isSellerOrAdmin,expressAsyncHandler(async(req,res)=>
 {
     
     const seller = req.query.seller || '';
@@ -78,7 +78,7 @@ orderRouter.get('/',isAuth,isAdmin,isSellerOrAdmin,expressAsyncHandler(async(req
     res.send(orders);
 }));
 
-orderRouter.delete('/:id',isAuth,isAdmin, expressAsyncHandler(async(req,res)=>
+orderRouter.delete('/:id',isAuth,isSellerOrAdmin, expressAsyncHandler(async(req,res)=>
 {
     const order = await Order.findById(req.params.id);
     if(order)
@@ -92,7 +92,7 @@ orderRouter.delete('/:id',isAuth,isAdmin, expressAsyncHandler(async(req,res)=>
 }));
 
 
-orderRouter.put('/:id/deliver',isAuth,isAdmin,expressAsyncHandler(async(req,res)=>
+orderRouter.put('/:id/deliver',isAuth,isSellerOrAdmin,expressAsyncHandler(async(req,res)=>
 {
     const order =await Order.findById(req.params.id);
     if(order)
