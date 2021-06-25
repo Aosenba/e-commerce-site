@@ -6,9 +6,11 @@ import { listProducts } from '../actions/productActions';
 import LoadingBox from '../Home/LoadingBox';
 import MessageBox from '../Home/MessageBox';
 import Product from '../components/Product';
+import { prices, ratings } from '../utils';
+import Rating from '../components/Rating';
 
 const SearchResults = (props) => {
-    const {name="all",category="all"} = useParams();
+    const {name="all",category="all",min=0,max=0,rating=0,order='newest'} = useParams();
     const dispatch = useDispatch();
 
     const productList = useSelector(state=>state.productList);
@@ -21,15 +23,20 @@ const SearchResults = (props) => {
     {
         const filterCategory = filter.category || category;
         const filterName = filter.name || name;
-        return `/search/category/${filterCategory}/name/${filterName}`;
+        const filterRating = filter.rating || rating;
+        const sortOrder = filter.order || order;
+        const filterMin = filter.min? filter.min : filter.min ===0? 0 : min;
+        const filterMax = filter.max? filter.max : filter.max ===0? 0 : max;
+        return `/search/category/${filterCategory}/name/${filterName}/min/${filterMin}/max/${filterMax}/rating/${filterRating}/order/${sortOrder}`;
     }
 
     useEffect(()=>
     {
         dispatch(listProducts({
             name:name!=='all'?name:'',
-         category:category!=='all'?category:''}));
-    },[dispatch,name,category])
+         category:category!=='all'?category:'',
+        min,max,rating,order}));
+    },[dispatch,name,category,min,max,rating,order])
     return (
         <div>
             <div  className="row">
@@ -43,10 +50,23 @@ const SearchResults = (props) => {
             </div>
          
         }
+        <div className="sort" >
+           Sort by  {' '}
+            <select value={order} onChange={(e)=>{props.history.push(getFilterUrl({order:e.target.value}));}}>
+                <option value="newest">Newest Arrivals</option>
+                <option value="lowest">Price:Low to high</option>
+                <option value="highest">Price:High to Low</option>
+                <option value="topRated">Ratings</option>
+
+            </select>
+            <br/>
+        </div>
+      
         </div>
         <div className="row top">
-            <div className="col-1">
+            <div className="col-1 card">
                 <h3>Department</h3>
+              
                 {
                         loadingCategory?<LoadingBox/>
                         :
@@ -54,7 +74,7 @@ const SearchResults = (props) => {
                         :
                 
                            (  
-                          <ul>
+                          <ul className="sidebar-categories">
                               {categories.map((c,idx)=>(
                                    <li key={idx+1}>
                                     <Link className={c=== category? 'active' : ''}
@@ -65,8 +85,37 @@ const SearchResults = (props) => {
                          </ul>
                          )
                 }
-               
-            </div>
+                    <div>
+                    <h3>Price</h3>
+                    <ul className="sidebar-categories">
+                       {
+                       prices.map((p,idx)=>(
+                           <li key={idx}>
+                               <Link to={getFilterUrl({min:p.min,max:p.max})}
+                               className={`${p.min}-${p.max}`===`${min}-${max}`?'active':''}>
+                                   {p.name}
+                               </Link>
+                           </li>
+                       ))}
+                    </ul>
+                   </div>
+                   <div>
+                    <h3>Rating</h3>
+                    <ul className="sidebar-categories">
+                       {
+                       ratings.map((r,idx)=>(
+                           <li key={idx}>
+                               <Link to={getFilterUrl({rating:r.rating})}
+                               className={`${r.rating}` === `${rating}`? 'active' :''}>
+                                   {r.name}
+                                   <Rating caption=" & up" rating={r.rating}></Rating>
+                               </Link>
+                           </li>
+                       ))}
+                    </ul>
+                   </div>
+               </div>
+           
             <div className="col-3">
             {loading?<LoadingBox/>
             :

@@ -9,14 +9,15 @@ import { PRODUCT_CATEGORY_LIST_FAILED, PRODUCT_CATEGORY_LIST_REQUEST, PRODUCT_CA
        PRODUCT_UPDATE_REQUEST,
        PRODUCT_UPDATE_SUCCESS} from "../constants/productConstants"
 
-export const listProducts =({seller='',name='',category=''})=> async(dispatch)=>{
+export const listProducts =({seller='',name='',category='',min=0,max=0,rating=0,order=''})=> async(dispatch)=>{
     dispatch({
          type: PRODUCT_LIST_REQUEST
     });
 
     try {
     
-        const {data}= await Axios.get(`/api/products?seller=${seller}&name=${name}&category=${category}`);
+ const {data}= 
+ await Axios.get(`/api/products?seller=${seller}&name=${name}&category=${category}&min=${min}&max=${max}&rating=${rating}&order=${order}`);
        dispatch({type:PRODUCT_LIST_SUCCESS ,  payload : data});
         
     } catch (error) {

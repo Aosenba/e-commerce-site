@@ -140,7 +140,8 @@ window.addEventListener("scroll", changeBack);
         <Route path="/seller/:id" component={SellerPage}/>
         <Route path="/search/name/:name?" exact component={SearchResults}/>
         <Route path="/search/category/:category" exact component={SearchResults}/>
-        <Route path="/search/category/:category/name/:name?" exact component={SearchResults}/>
+        <Route path="/search/category/:category/name/:name" exact component={SearchResults}/>
+        <Route path="/search/category/:category/name/:name/min/:min/max/:max/rating/:rating/order/:order" exact component={SearchResults}/>
         <PrivateRoute path="/profile" component={ProfileView}></PrivateRoute>
         <AdminRoute path="/userlist" component={UserList}></AdminRoute>
         <AdminRoute path="/user/:id/edit" component={UserEdit}></AdminRoute>
