@@ -72,11 +72,7 @@ window.addEventListener("scroll", changeBack);
  <ScrollTop/>
     <div className="grid-container">
     <header className={navbar? "onScroll":""}>
-                <div className="burger" onClick={burgertoggle}>
-                        <div className="l1"></div>
-                        <div className="l2"></div>
-                        <div className="l3"></div>
-                </div>
+           
 
                 <button type="button" className="open-sidebar" 
                 onClick={()=>setSideBarOpen(true)}>
@@ -84,14 +80,19 @@ window.addEventListener("scroll", changeBack);
                 </button>
 
                 <div className="logo">
-                <img src={feathers} alt="logo"/>
-                    <Link to="/" className="logo-name">Vicarious</Link>
+            
+                    <Link to="/" className="logo-name"><img src={feathers} alt="logo"/>Vicarious</Link>
                 
                 </div>
                 <Route render={({history})=>(
               <SearchBox history={history}></SearchBox>
             )}></Route>
-            <NavBar cartItems={cartItems} userInfo={userInfo} />
+            <NavBar cartItems={cartItems} userInfo={userInfo} ></NavBar>
+            <div className="burger" onClick={burgertoggle}>
+                        <div className="l1"></div>
+                        <div className="l2"></div>
+                        <div className="l3"></div>
+                </div>
            
   </header>
   <aside className={sideBarOpen? 'open':''}>

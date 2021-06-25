@@ -27,14 +27,22 @@ h1,h3{
 }
 .logo
 {
+  display: flex;
+  
   font-size: 26px;
   font-weight: bold;
   width: 100%;
  
 }
+.logo-name{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .logo img{
-   max-height: 7rem;
-  max-width: 7rem;
+   max-height: 6rem;
+  max-width: 6rem;
+  padding: 0;
 }
 .grid-container
 {
@@ -132,8 +140,7 @@ header a:hover{
 }
 
 .burger {
-  position: absolute;
-   right: 0rem;
+
   display: none;
   margin: 0;
   width: 10%;
@@ -154,12 +161,12 @@ header a:hover{
 /* aside */
 aside{
   position: fixed;
-  width: 30rem;
+  width: 20rem;
   height: 100%;
   background-color: rgba(12, 11, 11, 0.772);
   backdrop-filter: blur(3px);
   z-index: 1000;
-  transform: translateX(-30rem);
+  transform: translateX(-50rem);
   transition: all 0.3s;
 }
 aside.open{
@@ -191,6 +198,7 @@ button.close-sidebar{
   background-color: transparent;
   color: #66fcf1;
   cursor: pointer;
+  margin-left: 1rem;
 }
 button.close-sidebar:hover{
 border-color: #ffffff;
@@ -244,6 +252,8 @@ align-items: flex-start;
 {
   color: white;
   flex: 2 1 50rem;
+  display: flex;
+  justify-content: center;
 
 }
 .col-3
@@ -277,7 +287,7 @@ img.medium
 
 img.large
 {
-   box-shadow: 1px 1px 3px 1px grey;
+   box-shadow: 1px 1px 5px 1px black;
   width: 35rem;
   height: 50rem;
 }
@@ -393,7 +403,7 @@ button.primary:hover{
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  margin-left: 2rem;
+
 }
 
 .search button
@@ -790,10 +800,10 @@ button.small
 .right-arrow{
   color: teal;
 }
-@media screen and (max-width:1024px)
+@media screen and (max-width:720px)
 {
   header{
-    grid-template-columns: 5rem 5rem 2fr;
+    grid-template-columns: 5rem 5rem 2fr 5rem;
   }
   
    .logo
@@ -832,7 +842,8 @@ button.small
     .nav-links{
        
         flex-direction: column;
-        background-color: #171e22;
+        background-color: rgba(12, 11, 11, 0.772);
+       backdrop-filter: blur(3px);
         width: 50%;       
         height: 100%;
         float:right;

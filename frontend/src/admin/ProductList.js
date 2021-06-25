@@ -14,7 +14,7 @@ const ProductList = (props) => {
 
     const productCreate = useSelector(state=>state.productCreate);
     const {loading:loadingCreate,error:errorCreate,success:successCreate,product:createdProduct} = productCreate;
-     console.log(products)
+  
     const dispatch = useDispatch();
    
     const productDelete =useSelector(state=>state.productDelete);

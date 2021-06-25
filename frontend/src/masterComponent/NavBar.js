@@ -30,12 +30,14 @@ const NavBar = ({cartItems,userInfo}) => {
        
         <div className="nav-main">
         <div className="nav-links">
-       
+        <Link to="/">Home</Link>
             <div className="drop">
+         
             <Link  to="#">Categories
              <Categories/> <i className="fa fa-caret-down down"></i>
             </Link>
             </div>
+
             <Link to="/">About us</Link>
      
             {
