@@ -79,7 +79,7 @@ window.addEventListener("scroll", changeBack);
                   <i className="fa fa-plus"></i>
                 </button>
 
-                <div className="logo">
+                <div className="logo" onClick={burgertoggle}>
             
                     <Link to="/" className="logo-name"><img src={feathers} alt="logo"/>Vicarious</Link>
                 
@@ -87,7 +87,7 @@ window.addEventListener("scroll", changeBack);
                 <Route render={({history})=>(
               <SearchBox history={history}></SearchBox>
             )}></Route>
-            <NavBar cartItems={cartItems} userInfo={userInfo} ></NavBar>
+            <NavBar cartItems={cartItems} userInfo={userInfo} toggle={burgertoggle}></NavBar>
             <div className="burger" onClick={burgertoggle}>
                         <div className="l1"></div>
                         <div className="l2"></div>

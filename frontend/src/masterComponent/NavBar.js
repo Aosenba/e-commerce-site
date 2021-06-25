@@ -6,7 +6,7 @@ import Categories from './Categories';
 
 
 
-const NavBar = ({cartItems,userInfo}) => {
+const NavBar = ({cartItems,userInfo,toggle}) => {
 
   
   
@@ -30,7 +30,7 @@ const NavBar = ({cartItems,userInfo}) => {
        
         <div className="nav-main">
         <div className="nav-links">
-        <Link to="/">Home</Link>
+        <Link to="/"  onClick={toggle}>Home</Link>
             <div className="drop">
          
             <Link  to="#">Categories
@@ -38,7 +38,7 @@ const NavBar = ({cartItems,userInfo}) => {
             </Link>
             </div>
 
-            <Link to="/">About us</Link>
+            <Link to="/" onClick={toggle}>About us</Link>
      
             {
                 userInfo? (
@@ -60,7 +60,7 @@ const NavBar = ({cartItems,userInfo}) => {
                     </div>
                 ):
                 (
-                  <Link to="/signin">Sign In</Link> 
+                  <Link to="/signin"  onClick={toggle}>Sign In</Link> 
                 )
                
             }
