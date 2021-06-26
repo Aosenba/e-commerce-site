@@ -59,7 +59,7 @@ header{
   grid-area: header;
    height: 12rem;
   display: grid;
-  grid-template-columns:5rem 2fr 2fr 5fr;
+  grid-template-columns:5rem 1fr 3fr 5fr;
   align-items: center;
   position:fixed;
   top:0;
@@ -179,6 +179,7 @@ button.open-sidebar{
   background: none;
   color: #66fcf1;
  cursor: pointer;
+ margin-left: 1rem;
 }
 button.open-sidebar:hover{
   border-color: #ffffff;
@@ -189,24 +190,38 @@ aside ul{
 }
 aside li{
   display: flex;
-  justify-content: space-between;
-  padding: 1rem;
+  justify-content: center;
+  padding: .5rem;
+  border: 1px solid #4d4d4d;
+  border-radius: .2rem;
+}
+aside li:hover{
+  border: 1px solid #fffcfc;
+}
+aside li:nth-child(1){
+    justify-content: space-between;
+    background-color: #0c3330;
+    border: 1px solid #fffcfc;
+}
+aside li a{
+  text-align: center;
 }
 button.close-sidebar{
-  font-size: 2.5rem;
-  padding: .3rem .8rem;
+  font-size: 2rem;
+  padding: .2rem .7rem;
   background-color: transparent;
   color: #66fcf1;
   cursor: pointer;
-  margin-left: 1rem;
+
 }
 button.close-sidebar:hover{
 border-color: #ffffff;
 }
 strong{
   color:#ffffff;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
+
 main{
   grid-area: main;
   padding: 1rem;
@@ -387,8 +402,6 @@ button.block
 }
 button.primary:hover{
   background-color: #2eb8b1;
-  
- 
 }
 .search-btn
 {
@@ -503,7 +516,6 @@ button.primary:hover{
 .sidebar-categories li{
   margin: .5rem 1rem;
 }
-
 
 /* FORM */
 .form
@@ -819,10 +831,10 @@ button.small
 .right-arrow{
   color: teal;
 }
-@media screen and (max-width:720px)
+@media screen and (max-width:1024px)
 {
   header{
-    grid-template-columns: 5rem  4fr 5rem;
+    grid-template-columns: 5rem 1fr 3fr 5rem;
   }
   
    .logo
@@ -834,9 +846,7 @@ button.small
   justify-content: center;
    }
    
-   .logo{
-     display: none;
-   }
+  
    img.large
    {
      width: 100%;
@@ -896,3 +906,20 @@ button.small
       display: none;
     }
   }
+
+  @media screen and (max-width:767px)
+{
+  header{
+     grid-template-columns: 5rem 4fr 5rem;
+  }
+  .logo{
+    display: none;
+  }
+}
+@media screen and (max-width:320px)
+{
+  header{
+     grid-template-columns:5rem 23rem 5rem;
+  }
+ 
+}

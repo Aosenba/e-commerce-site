@@ -51,7 +51,7 @@ const SearchResults = (props) => {
          
         }
         <div className="sort" >
-           Sort by  {' '}
+           Sort by : {' '}
             <select value={order} onChange={(e)=>{props.history.push(getFilterUrl({order:e.target.value}));}}>
                 <option value="newest">Newest Arrivals</option>
                 <option value="lowest">Price:Low to high</option>

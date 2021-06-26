@@ -1,6 +1,4 @@
 .cards {
-  
-  
     width: 90%;
    position: relative;
   
@@ -121,11 +119,6 @@
     line-height: 24px;
     width: 100%;
   }
-  
- 
-  
- 
-  
   @media only screen and (max-width: 1024px) {
    
   

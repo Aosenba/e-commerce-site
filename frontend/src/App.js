@@ -79,7 +79,7 @@ window.addEventListener("scroll", changeBack);
                   <i className="fa fa-plus"></i>
                 </button>
 
-                <div className="logo" onClick={burgertoggle}>
+                <div className="logo" >
             
                     <Link to="/" className="logo-name"><img src={feathers} alt="logo"/>Vicarious</Link>
                 
