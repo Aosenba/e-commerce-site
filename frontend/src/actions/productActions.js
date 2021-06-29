@@ -14,7 +14,7 @@ import {CREATE_REVIEW_FAILED, CREATE_REVIEW_REQUEST, CREATE_REVIEW_SUCCESS, PROD
        PRODUCT_UPDATE_REQUEST,
        PRODUCT_UPDATE_SUCCESS} from "../constants/productConstants"
 
-export const listProducts =({seller='',name='',category='',min=0,max=0,rating=0,order=''})=> async(dispatch)=>{
+export const listProducts =({seller='',name='',category='',min=0,max=0,rating=0,order='',pageNumber=""})=> async(dispatch)=>{
     dispatch({
          type: PRODUCT_LIST_REQUEST
     });
@@ -22,7 +22,7 @@ export const listProducts =({seller='',name='',category='',min=0,max=0,rating=0,
     try {
     
  const {data}= 
- await Axios.get(`/api/products?seller=${seller}&name=${name}&category=${category}&min=${min}&max=${max}&rating=${rating}&order=${order}`);
+ await Axios.get(`/api/products?pageNumber=${pageNumber}&seller=${seller}&name=${name}&category=${category}&min=${min}&max=${max}&rating=${rating}&order=${order}`);
        dispatch({type:PRODUCT_LIST_SUCCESS ,  payload : data});
         
     } catch (error) {

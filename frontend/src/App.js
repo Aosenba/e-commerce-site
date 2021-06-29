@@ -35,6 +35,7 @@ import { useDispatch } from 'react-redux';
 import { listProductCategories } from './actions/productActions';
 import LoadingBox from './Home/LoadingBox';
 import MessageBox from './Home/MessageBox';
+import Dashboard from './admin/Dashboard';
 
 function App(props) {
   const burgertoggle = () => {
@@ -141,12 +142,14 @@ window.addEventListener("scroll", changeBack);
         <Route path="/search/name/:name?" exact component={SearchResults}/>
         <Route path="/search/category/:category" exact component={SearchResults}/>
         <Route path="/search/category/:category/name/:name" exact component={SearchResults}/>
-        <Route path="/search/category/:category/name/:name/min/:min/max/:max/rating/:rating/order/:order" exact component={SearchResults}/>
+        <Route path="/search/category/:category/name/:name/min/:min/max/:max/rating/:rating/order/:order/pageNumber/:pageNumber" exact component={SearchResults}/>
         <PrivateRoute path="/profile" component={ProfileView}></PrivateRoute>
         <AdminRoute path="/userlist" component={UserList}></AdminRoute>
         <AdminRoute path="/user/:id/edit" component={UserEdit}></AdminRoute>
         <AdminRoute path="/productlist" exact component={ProductList}></AdminRoute>
+        <AdminRoute path="/productlist/pageNumber/:pageNumber" exact component={ProductList}></AdminRoute>
         <AdminRoute path="/orderlist" exact component={OrderListView}></AdminRoute>
+        <AdminRoute path="/dashboard" exact component={Dashboard}/>
         <SellerRoute path="/productlist/seller" component={ProductList}/>
         <SellerRoute path="/orderlist/seller" component={OrderListView}/>
         

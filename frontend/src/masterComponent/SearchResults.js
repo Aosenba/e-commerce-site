@@ -10,33 +10,36 @@ import { prices, ratings } from '../utils';
 import Rating from '../components/Rating';
 
 const SearchResults = (props) => {
-    const {name="all",category="all",min=0,max=0,rating=0,order='newest'} = useParams();
+  
+    const {name="all",category="all",min=0,max=0,rating=0,order='newest',pageNumber=1} = useParams();
     const dispatch = useDispatch();
-
+     
     const productList = useSelector(state=>state.productList);
-    const {loading,error,products} = productList;
-    
+    const {loading,error,products,page,pages} = productList;
+    console.log(productList)
     const productCategoryList = useSelector(state=>state.productCategoryList);
     const {loading:loadingCategory,error:errorCategory,categories} = productCategoryList;
 
     const getFilterUrl=(filter)=>
     {
+        const filterPage = filter.page || pageNumber;
         const filterCategory = filter.category || category;
         const filterName = filter.name || name;
         const filterRating = filter.rating || rating;
         const sortOrder = filter.order || order;
         const filterMin = filter.min? filter.min : filter.min ===0? 0 : min;
         const filterMax = filter.max? filter.max : filter.max ===0? 0 : max;
-        return `/search/category/${filterCategory}/name/${filterName}/min/${filterMin}/max/${filterMax}/rating/${filterRating}/order/${sortOrder}`;
+        return `/search/category/${filterCategory}/name/${filterName}/min/${filterMin}/max/${filterMax}/rating/${filterRating}/order/${sortOrder}/pageNumber/${filterPage}`;
     }
 
     useEffect(()=>
     {
         dispatch(listProducts({
+            pageNumber,
             name:name!=='all'?name:'',
          category:category!=='all'?category:'',
         min,max,rating,order}));
-    },[dispatch,name,category,min,max,rating,order])
+    },[dispatch,name,category,min,max,rating,order,pageNumber])
     return (
         <div>
             <div  className="row">
@@ -120,7 +123,7 @@ const SearchResults = (props) => {
             {loading?<LoadingBox/>
             :
             error?<MessageBox variant="danger">{error}</MessageBox>    
-            :
+            :(
             <>
             {products.length===0 && <MessageBox variant="danger">No Products found</MessageBox>}
             <div className="row center">
@@ -132,9 +135,16 @@ const SearchResults = (props) => {
                ))
             } 
            </div>
-           </>
-         
+           <div className="pagination row center">
+               {
+                   [...Array(pages).keys()].map(x=>(
+                       <Link className={x+1===page?'active':''} key={x+1} to={getFilterUrl({page:x+1})}>{x+1}</Link>
+                   ))
                }
+           </div>
+           </>
+            
+             ) }
             </div>
         </div>
         </div>

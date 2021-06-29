@@ -9,7 +9,7 @@ import { CREATE_ORDER_FAILED, CREATE_ORDER_REQUEST,
      ORDER_DELIVER_RESET, 
      ORDER_DELIVER_SUCCESS, 
      ORDER_DETAILS_FAILED, ORDER_DETAILS_REQUEST, ORDER_DETAILS_SUCCESS, ORDER_LIST_FAILED,
-     ORDER_LIST_REQUEST, ORDER_LIST_SUCCESS, ORDER_PAY_FAILED, ORDER_PAY_REQUEST, ORDER_PAY_RESET, ORDER_PAY_SUCCESS } from "../constants/orderConstants";
+     ORDER_LIST_REQUEST, ORDER_LIST_SUCCESS, ORDER_PAY_FAILED, ORDER_PAY_REQUEST, ORDER_PAY_RESET, ORDER_PAY_SUCCESS, ORDER_SUMMARY_FAILED, ORDER_SUMMARY_REQUEST,ORDER_SUMMARY_SUCCESS } from "../constants/orderConstants";
 
 export const orderCreateReducer  =(state ={},action) =>
 {
@@ -146,4 +146,19 @@ export const orderDeliverReducer =(state={},action)=>
         default :
             return state
     };
+};
+
+export const orderSummaryReducer =(state ={loading:true,summary:{}},action)=>
+{
+  switch(action.type)
+  {
+      case ORDER_SUMMARY_REQUEST:
+          return {loading:true};
+      case ORDER_SUMMARY_SUCCESS:
+          return {loading:false,summary:action.payload};
+      case ORDER_SUMMARY_FAILED:
+          return{loading:false, error :action.payload};
+      default:
+          return state;
+  }
 };

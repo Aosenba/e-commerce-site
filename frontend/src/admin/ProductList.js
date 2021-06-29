@@ -2,15 +2,18 @@ import React from 'react'
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux'
+import { useParams,Link } from 'react-router-dom';
 import { createProduct, deleteProduct, listProducts } from '../actions/productActions';
 import { PRODUCT_CREATE_RESET, PRODUCT_DELETE_RESET } from '../constants/productConstants';
 import LoadingBox from '../Home/LoadingBox';
 import MessageBox from '../Home/MessageBox';
 
 const ProductList = (props) => {
+
+    const {pageNumber=1}= useParams();
     const sellerMode = props.match.path.indexOf('/seller')>=0;
     const productList = useSelector(state=>state.productList);
-    const {loading,error,products}= productList;
+    const {loading,error,products,page,pages}= productList;
 
     const productCreate = useSelector(state=>state.productCreate);
     const {loading:loadingCreate,error:errorCreate,success:successCreate,product:createdProduct} = productCreate;
@@ -45,8 +48,8 @@ const ProductList = (props) => {
         {
             dispatch({type:PRODUCT_DELETE_RESET});
         }
-        dispatch(listProducts({seller:sellerMode?userInfo._id :''}));
-    },[createdProduct,dispatch,props.history,sellerMode,successCreate,successDelete,userInfo._id]);
+        dispatch(listProducts({seller:sellerMode?userInfo._id :'',pageNumber}));
+    },[createdProduct,dispatch,props.history,sellerMode,successCreate,successDelete,userInfo._id,pageNumber]);
 
     return (
         <div>
@@ -66,6 +69,7 @@ const ProductList = (props) => {
             :
              error? <MessageBox variant="danger">{error}</MessageBox>
             :
+            <>
             <table className="table">
                 <thead>
                 <tr>
@@ -104,6 +108,14 @@ const ProductList = (props) => {
                    }
                </tbody>
             </table>
+                <div className="pagination row center">
+                {
+                    [...Array(pages).keys()].map(x=>(
+                        <Link className={x+1===page?'active':''} key={x+1} to={`/productlist/pageNumber/${x+1 }`}>{x+1}</Link>
+                    ))
+                }
+            </div>
+            </>
             }
             
         </div>
