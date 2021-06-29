@@ -24,9 +24,8 @@ router.post('/', upload.single('image'),(req,res)=>{
 });
 
 aws.config.update({
-    accessKeyId:config.accessKeyId,
-    secretAccessKey:config.secretAccessKey,
-});
+    accessKeyId:config.ACCESS_KEY_ID,
+    secretAccessKey:config.SECRET_ACCESS_KEY});
 
 const s3  = new aws.S3();
 const storageS3= multerS3({

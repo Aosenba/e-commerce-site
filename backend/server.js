@@ -5,7 +5,7 @@ import path from 'path';
 import productRouter from './routers/productRouter.js';
 import userRouter from './routers/userRouter.js';
 import orderRouter from './routers/orderRouter.js';
-import uploadRouter from './routers/uploadRouter.js';
+import router from './routers/uploadRouter.js';
 
 dotenv.config();
 
@@ -18,7 +18,7 @@ mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/vicarious', {
   useUnifiedTopology: true,
   useCreateIndex: true,
 });
-app.use('/api/uploads', uploadRouter);
+app.use('/api/uploads', router);
 app.use('/api/users', userRouter);
 app.use('/api/products', productRouter);
 app.use('/api/orders', orderRouter);
