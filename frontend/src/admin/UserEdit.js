@@ -13,7 +13,6 @@ const UserEdit = (props) => {
     const [email, setEmail] = useState('');
     const [isSeller, setIsSeller] = useState(false);
     const [isAdmin, setIsAdmin] = useState(false);
-    console.log(isSeller)
     const userDetails = useSelector(state=>state.userDetails);
     const {loading,error,user}=userDetails;
 

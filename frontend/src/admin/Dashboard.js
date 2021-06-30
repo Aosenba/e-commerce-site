@@ -10,7 +10,6 @@ import Chart from 'react-google-charts'
 const Dashboard = () => {
     const orderSummary =  useSelector(state=>state.orderSummary);
     const {loading,error,summary}=orderSummary;
-    console.log(summary)
     const dispatch = useDispatch();
     useEffect(()=>{
         dispatch(summaryOrder());

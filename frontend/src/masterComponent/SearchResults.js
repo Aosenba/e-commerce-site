@@ -16,7 +16,6 @@ const SearchResults = (props) => {
      
     const productList = useSelector(state=>state.productList);
     const {loading,error,products,page,pages} = productList;
-    console.log(productList)
     const productCategoryList = useSelector(state=>state.productCategoryList);
     const {loading:loadingCategory,error:errorCategory,categories} = productCategoryList;
 

@@ -144,8 +144,8 @@ const ProfileView = () => {
                                 {errorUpload && <MessageBox variant="danger">{errorUpload}</MessageBox>}
                             </div>
                             <div>
-                                    <label  htmlFor="logo">Image</label>
-                                    <input type="text" id="logo" value={logo} placeholder="Enter image file" 
+                                    <label  htmlFor="logotxt">Image</label>
+                                    <input type="text" id="logotxt" value={logo} placeholder="Enter image file" 
                                     onChange={e=>setLogo(e.target.value)}></input>
                            </div>
                             <div>

@@ -3,12 +3,15 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import Axios from 'axios';
+import {Link} from 'react-router-dom';
 import { detailsProduct, updateProduct } from '../actions/productActions';
 import LoadingBox from '../Home/LoadingBox';
 import MessageBox from '../Home/MessageBox';
 import { PRODUCT_UPDATE_RESET } from '../constants/productConstants';
 
 const ProductEditView = (props) => {
+    const userDetails = useSelector(state=>state.userDetails);
+    const {user}= userDetails;
     const productId=props.match.params.id;
     const [name, setName] = useState('');
     const [image, setImage] = useState('');
@@ -20,10 +23,10 @@ const ProductEditView = (props) => {
     const productDetails = useSelector(state=>state.productDetails);
     const {loading,error,product}=productDetails;
     const dispatch = useDispatch();
-
+ 
     const productUpdate =useSelector(state=>state.productUpdate);
     const {loading:loadingUpdate,error:errorUpdate,success:successUpdate} = productUpdate;
-
+   console.log(user)
     const submitHandler=(e)=>
     {
         e.preventDefault();
@@ -80,6 +83,17 @@ const ProductEditView = (props) => {
     },[product,dispatch,productId,props.history,successUpdate]);
 
     return (
+        <>
+        {
+            !user? (
+            <div>
+            <MessageBox variant="danger">
+                Please complete your profile here
+                </MessageBox>
+                 <Link to="/profile">My Profile</Link>
+             </div>
+                )
+           :
         <div>
             <form className="form" onSubmit={submitHandler}>
                 <div>
@@ -142,7 +156,11 @@ const ProductEditView = (props) => {
                 }
             </form>
         </div>
+       }
+        </>
+     
     )
+            
 }
 
 export default ProductEditView

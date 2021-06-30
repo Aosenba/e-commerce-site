@@ -17,7 +17,6 @@ const ProductView = (props) => {
     const {loading:loadingReview,error:errorReview,success:successReview}=createProductReview;
     const userSignin = useSelector(state=>state.userSignin);
     const {userInfo}=userSignin;
-   console.log(comment,rating)
     const submitHandler =(e)=>
     {
         e.preventDefault();

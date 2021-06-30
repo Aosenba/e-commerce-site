@@ -10,7 +10,6 @@ const SearchBox = (props) => {
         props.history.push(`/search/name/${name}`);
 
     }
-    console.log(props)
     return (
         <div>
        <form className={props.searchToggle?"search open-search": "search"} onSubmit={submitHandler}>

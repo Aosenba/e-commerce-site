@@ -1,13 +1,14 @@
 import React from 'react'
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { signout } from '../actions/userActions';
 import Categories from './Categories';
 
 
 
 const NavBar = ({cartItems,userInfo,toggle}) => {
+  const history = useHistory();
   const [menuToggle, setMenuToggle] = useState(false);
   const [menuToggle2, setMenuToggle2] = useState(false);
   const [menuToggle3, setMenuToggle3] = useState(false);
@@ -21,6 +22,7 @@ const NavBar = ({cartItems,userInfo,toggle}) => {
     if(res===true)
     {
         dispatch(signout());
+        history.push('/');
     }   
   };
 

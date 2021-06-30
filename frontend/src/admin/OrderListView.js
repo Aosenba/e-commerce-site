@@ -16,7 +16,6 @@ const OrderListView = (props) => {
     const {loading:loadingDelete, error:errorDelete,success:successDelete} = orderDelete;
     const userSignin =useSelector(state=>state.userSignin);
     const {userInfo}=userSignin;
-    console.log(orders)
     const deleteHandler =(orderId)=>
     {
         if(window.confirm("Are you sure you want to delete"))

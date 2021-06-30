@@ -149,8 +149,8 @@ header a{
 
   display: none;
   margin: 0;
-  width: 10%;
-  padding: 3px;
+  
+  padding: 5px;
  
 }
 .toggle .l1 {
@@ -356,7 +356,7 @@ ul{
   margin: 0;
 }
  li{
-  margin: 2rem 2rem;
+  margin: 2rem  0rem;
 }
 li a{
   color: white;
@@ -1041,7 +1041,7 @@ pointer-events: none;
   .h-close{
     grid-template-columns: 5rem 1rem 1fr 5rem;
   }
-  input{
+  .search input{
     width: 15rem;
     padding:  .7rem 0;
   }
@@ -1052,9 +1052,11 @@ pointer-events: none;
   header{
      grid-template-columns:5rem 23rem 5rem;
   }
-  input{
+  .search input{
     width: 12rem;
     padding:  .5rem 0;
   }
- 
+  .search-icon{
+    right: 5rem;
+  }
 }
