@@ -81,11 +81,6 @@ window.addEventListener("scroll", changeBack);
     <header className={navbar? "onScroll":""}>
                 <div className={searchToggle?"main-header h-close":"main-header"}>
 
-                <button type="button" className="open-sidebar" 
-                onClick={()=>setSideBarOpen(true)}>
-                  <i className="fa fa-plus"></i>
-                </button>
-
                 <div className={searchToggle?"logo up":"logo"} >
             
                     <Link to="/" className="logo-name"><img src={feathers} alt="logo"/>Vicarious</Link>
@@ -100,15 +95,14 @@ window.addEventListener("scroll", changeBack);
                         <div className="l2"></div>
                         <div className="l3"></div>
                 </div>
-                </div>
-  </header>
-  <aside className={sideBarOpen? 'open':''}>
+                
+                <aside className={sideBarOpen? 'open':''}>
     <ul className="categories">
       <li>
         <strong>Categories</strong>
-        <button onClick={()=>setSideBarOpen(false)} className="close-sidebar"
+        <button onClick={()=>setSideBarOpen(!sideBarOpen)} className="close-sidebar"
         type="button"
-        ><i className="fa fa-close"/></button>
+        ><i className={!sideBarOpen?"fa fa-plus c1":"fa fa-plus c1 c2"}/></button>
       </li>
       { 
                         loadingCategory?<LoadingBox/>
@@ -131,6 +125,9 @@ window.addEventListener("scroll", changeBack);
     </ul>
 
   </aside>
+  </div>
+  </header>
+ 
     <main>
         <Route path='/' exact component={HomeView}/>
         <Route path="/product/:id" exact component={ProductView}/>

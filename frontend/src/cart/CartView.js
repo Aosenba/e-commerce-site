@@ -45,9 +45,13 @@ const CartView = (props) => {
     };
   
     return (
+        <div>
+            <div className="row"> <h1>Shopping cart</h1></div>  
         <div className="row top">
+        
+             
             <div className="col-2">
-                <h1>Shopping cart</h1>
+             
                 {
                     cartItems.length===0? 
                     <MessageBox>Cart is Empty{' '}
@@ -55,7 +59,7 @@ const CartView = (props) => {
                     </MessageBox>
                     :
                     (
-                        <ul>
+                        <ul className="cart-details card">
                            {
                                cartItems.map((item)=>
                                (
@@ -134,6 +138,7 @@ const CartView = (props) => {
                 </div>
             </div>
 
+        </div>
         </div>
     )
 }

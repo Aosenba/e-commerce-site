@@ -67,12 +67,14 @@ header{
 }
 .main-header{
   display: grid;
-  grid-template-columns:5rem 1fr 3fr 5fr;
+  grid-template-columns: 2fr 2fr 5fr;
   align-items: center;
   height: 100%;
+  position: relative;
 }
 .search-icon{
   display: none;
+  cursor: pointer;
 }
 header div{
   text-align: center;
@@ -170,59 +172,57 @@ aside{
   width: 20rem;
   height: 100%;
   background-color: rgba(12, 11, 11, 0.772);
-  backdrop-filter: blur(3px);
+  backdrop-filter: blur(5px);
   z-index: 1000;
-  transform: translateX(-50rem);
-  transition: all 0.3s;
+  transform: translateX(-20rem);
+  transition: all .5s;
 }
 aside.open{
   transform: translateX(0);
 }
-button.open-sidebar{
-  font-size: 2.5rem;
-  padding: .2rem .5rem;
-  margin: 0 .5rem;
-  background: none;
-  color: #66fcf1;
- cursor: pointer;
- margin-left: 1rem;
+.c1{
+  transition: all 1s;
 }
-button.open-sidebar:hover{
-  border-color: #ffffff;
+.c2{
+  transform: rotate(45deg);
+
 }
 aside ul{
   padding: 0;
   list-style: none;
 }
+aside ul li strong{
+  font-size: 2.5rem;
+}
 aside li{
   display: flex;
   justify-content: center;
-  padding: .5rem;
-  border: 1px solid #4d4d4d;
-  border-radius: .2rem;
+  align-items: center;
+
 }
-aside li:hover{
-  border: 1px solid #fffcfc;
-}
-aside li:nth-child(1){
-    justify-content: space-between;
-    background-color: #0c3330;
-    border: 1px solid #fffcfc;
-}
+
 aside li a{
   text-align: center;
+  border: 1px solid white;
+  padding:  .5rem 3rem;
+  border-radius: 3px;
+}
+aside li a:hover{
+  transform: translateX(1rem);
 }
 button.close-sidebar{
   font-size: 2rem;
   padding: .2rem .7rem;
-  background-color: transparent;
   color: #66fcf1;
   cursor: pointer;
+  position: absolute;
 
+  background-color: #2f2f30;
+  left: 100%;
+  
+  outline: none;
 }
-button.close-sidebar:hover{
-border-color: #ffffff;
-}
+
 strong{
   color:#ffffff;
   font-size: 1.5rem;
@@ -374,12 +374,17 @@ button{
   font-size: 14px;
   outline: none;
   box-shadow: 0px 0px 4px 1px black;
+ 
 }
 select{
   box-shadow: 0px 0px 3px 1px black;
   border: 1px solid #ffffff;
   color:#ffffff;
   background-color: #2f2f30;
+ 
+}
+.radio-group input{
+  box-shadow: none;
 }
 .sort{
   color: #ffffff;
@@ -442,11 +447,12 @@ button.primary:hover{
 {
   background-color: rgb(216, 36, 36);
   padding: 1rem;
-  border-radius: .5rem;
-
+  border-radius: .4rem;
   cursor: pointer;
   box-shadow: 0px 0px 3px 1px black;
-  
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  font-weight: bold;
 }
 .success
 {
@@ -506,6 +512,9 @@ button.primary:hover{
   width: 2rem;
   padding: .5rem;
 
+}
+.cart-details{
+  width: 100%;
 }
 .nameTag
 {
@@ -892,7 +901,7 @@ button.small
 @media screen and (max-width:1024px)
 {
   .main-header{
-    grid-template-columns: 5rem 3fr 3fr 5rem;
+    grid-template-columns:  3fr 3fr 5rem;
     transition: all .3s;
   }
   .dropdown{
@@ -915,11 +924,12 @@ button.small
   .search-icon{
     display: block;
     color:#66fcf1;
-    font-size: 2rem;
+    font-size: 2.5rem;
     position: absolute;
     right: 6rem;
     transform: translateY(0rem);
     transition: all.3s;
+    padding: 1rem;
   }
   .up{
     transform: translateY(-10rem);
@@ -1035,11 +1045,11 @@ pointer-events: none;
   @media screen and (max-width:767px)
 {
   .main-header{
-     grid-template-columns: 5rem 4fr 5rem 5rem;
+     grid-template-columns:  4fr 5rem 5rem;
    
   }
   .h-close{
-    grid-template-columns: 5rem 1rem 1fr 5rem;
+    grid-template-columns:  1rem 1fr 5rem;
   }
   .search input{
     width: 15rem;
