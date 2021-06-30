@@ -14,7 +14,7 @@ const ProductView = (props) => {
     const productId= props.match.params.id;
     const {loading,error,product} =useSelector((state)=>state.productDetails);
     const createProductReview =  useSelector(state=>state.createProductReview);
-    const {loading:loadingReview,error:errorReview,success:successReview, review}=createProductReview;
+    const {loading:loadingReview,error:errorReview,success:successReview}=createProductReview;
     const userSignin = useSelector(state=>state.userSignin);
     const {userInfo}=userSignin;
    console.log(comment,rating)

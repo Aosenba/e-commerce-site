@@ -48,7 +48,7 @@ const OrderReview = (props) => {
     (
         <div>
            <MessageBox variant="success">
-             <p> Your order was successfull.</p> 
+             <p> please Complete the order.</p> 
               Order Id: {order._id}
            
            </MessageBox>
@@ -156,10 +156,10 @@ const OrderReview = (props) => {
                                   (order.paymentMethod==="DebitCard" || order.paymentMethod==="UPI" )
                                   &&
                                   <div className="gpay">
-                                  <GpayButton totalPrice={order.totalPrice}
-                            
-                                   order={order}/>
-                                  </div>
+                                      {!order.isPaid &&    
+                                      <GpayButton totalPrice={order.totalPrice}
+                                     order={order}/>}
+                                    </div>
                               }
                             {
                                 userInfo.isAdmin && !order.isDelivered && (

@@ -54,7 +54,12 @@ const OrderListView = (props) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {orders.map((order,idx)=>(
+                    {
+                    orders.length === 0 ? (
+                        <tr><td><MessageBox variant="danger">No orders</MessageBox></td></tr>
+                    )
+                    :
+                    orders.map((order,idx)=>(
                         <tr key={order._id}>
                             <td>{idx+1}</td>
                             <td>{order.user.name}</td>

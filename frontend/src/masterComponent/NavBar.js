@@ -1,4 +1,5 @@
 import React from 'react'
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { signout } from '../actions/userActions';
@@ -7,8 +8,10 @@ import Categories from './Categories';
 
 
 const NavBar = ({cartItems,userInfo,toggle}) => {
+  const [menuToggle, setMenuToggle] = useState(false);
+  const [menuToggle2, setMenuToggle2] = useState(false);
+  const [menuToggle3, setMenuToggle3] = useState(false);
 
-  
   
 
     const dispatch = useDispatch();
@@ -48,9 +51,10 @@ const NavBar = ({cartItems,userInfo,toggle}) => {
                      className="nameTag">{userInfo.name} 
                     
                     </Link>
-                    <i className="fa fa-caret-down down"></i>
+                    <i className={!menuToggle? "fa fa-caret-down down" : "fa fa-caret-down  down-rotate"} 
+                    onClick={()=>setMenuToggle(!menuToggle)}></i>
                     </div>
-                    <ul className="dropdown-small" >
+                    <ul className={menuToggle?"dropdown-small open-menu" : "dropdown-small"}>
                         <li><Link  onClick={toggle} to="/profile">My profile</Link> </li>
                         <li> <Link  onClick={toggle} to="/orderhistory">Order History</Link>  </li>
                         <li className="signout" onClick={signoutHandler} >
@@ -67,8 +71,12 @@ const NavBar = ({cartItems,userInfo,toggle}) => {
             {
               userInfo && userInfo.isSeller &&
               <div className="dropdown">
-              <Link to="#admin" >Seller{' '} <i className="fa fa-caret-down down"></i></Link>
-              <ul className="dropdown-small">
+                <div>
+              <Link   className="nameTag" to="#admin" >Seller{' '} </Link>
+              <i className={!menuToggle2? "fa fa-caret-down down" : "fa fa-caret-down  down-rotate"} 
+               onClick={()=>setMenuToggle2(!menuToggle2)}></i>
+              </div>
+              <ul className={menuToggle2?"dropdown-small open-menu" : "dropdown-small"}>
            
                 <li><Link  onClick={toggle} to="/productlist/seller">Products</Link></li>
                 <li><Link  onClick={toggle} to="/orderlist/seller">Orders</Link></li>
@@ -78,8 +86,12 @@ const NavBar = ({cartItems,userInfo,toggle}) => {
             }
             {userInfo && userInfo.isAdmin && (
               <div className="dropdown">
-                <Link to="#admin" >Admin {' '} <i className="fa fa-caret-down down"></i></Link>
-                <ul className="dropdown-small">
+                <div>
+                <Link to="#admin" >Admin {' '}  </Link>
+                <i className={!menuToggle3? "fa fa-caret-down down" : "fa fa-caret-down  down-rotate"} 
+                  onClick={()=>setMenuToggle3(!menuToggle3)}></i>
+                 </div>
+                <ul className={menuToggle3?"dropdown-small open-menu" : "dropdown-small"}>
                   <li><Link  onClick={toggle} to="/dashboard">DashBoard</Link></li>
                   <li><Link  onClick={toggle} to="/productlist">Products</Link></li>
                   <li><Link  onClick={toggle} to="/orderlist">Orders</Link></li>

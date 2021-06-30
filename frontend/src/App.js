@@ -38,12 +38,18 @@ import MessageBox from './Home/MessageBox';
 import Dashboard from './admin/Dashboard';
 
 function App(props) {
+  const [searchToggle, setSearchToggle] = useState(false);
   const burgertoggle = () => {
+ 
     const burger = document.querySelector(".burger");
     const nav = document.querySelector(".nav-main");
     nav.classList.toggle("navActive");
     burger.classList.toggle("toggle");
   };
+  const searchToggler=()=>
+  {
+    setSearchToggle(!searchToggle);
+  }
   const productCategoryList = useSelector(state=>state.productCategoryList);
   const {loading:loadingCategory,error:errorCategory,categories} = productCategoryList;
   const [sideBarOpen, setSideBarOpen] = useState(false);
@@ -73,20 +79,20 @@ window.addEventListener("scroll", changeBack);
  <ScrollTop/>
     <div className="grid-container">
     <header className={navbar? "onScroll":""}>
-           
+                <div className={searchToggle?"main-header h-close":"main-header"}>
 
                 <button type="button" className="open-sidebar" 
                 onClick={()=>setSideBarOpen(true)}>
                   <i className="fa fa-plus"></i>
                 </button>
 
-                <div className="logo" >
+                <div className={searchToggle?"logo up":"logo"} >
             
                     <Link to="/" className="logo-name"><img src={feathers} alt="logo"/>Vicarious</Link>
                 
                 </div>
                 <Route render={({history})=>(
-              <SearchBox history={history}></SearchBox>
+              <SearchBox history={history} searchToggler={searchToggler} searchToggle={searchToggle}> </SearchBox>
             )}></Route>
             <NavBar cartItems={cartItems} userInfo={userInfo} toggle={burgertoggle}></NavBar>
             <div className="burger" onClick={burgertoggle}>
@@ -94,7 +100,7 @@ window.addEventListener("scroll", changeBack);
                         <div className="l2"></div>
                         <div className="l3"></div>
                 </div>
-           
+                </div>
   </header>
   <aside className={sideBarOpen? 'open':''}>
     <ul className="categories">

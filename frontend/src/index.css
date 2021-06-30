@@ -58,15 +58,21 @@ h1,h3{
 header{
   grid-area: header;
    height: 12rem;
-  display: grid;
-  grid-template-columns:5rem 1fr 3fr 5fr;
-  align-items: center;
   position:fixed;
   top:0;
   z-index: 1000;
   transition: all .3s;
   width: 100%;
 
+}
+.main-header{
+  display: grid;
+  grid-template-columns:5rem 1fr 3fr 5fr;
+  align-items: center;
+  height: 100%;
+}
+.search-icon{
+  display: none;
 }
 header div{
   text-align: center;
@@ -94,7 +100,6 @@ header div{
 }
 header a{
   color: #66fcf1;
-  padding: 1rem;
   font-weight: bold;
   position: relative;
   transition: all .2s;
@@ -105,14 +110,15 @@ header a{
 .onScroll
 {
    background-color: #1b1b1f;
-
    height: 10vh;
    box-shadow: 0px 0px 3px 1px black;
 }
-
-header a:hover{
-   border-bottom: 1px solid #66fcf1;
+.nav-links a{
   padding: 1rem;
+}
+.nav-links a:hover{
+   border-bottom: 1px solid #66fcf1;
+   height: 100%;
 }
 
 .home-card
@@ -422,7 +428,6 @@ button.primary:hover{
   display: flex;
   align-items: center;
   justify-content: center;
-
 }
 .active{
   font-weight: bold;
@@ -632,7 +637,6 @@ align-self: flex-start;
 }
 .drop:hover .dropdown-list>div{
   opacity: 1;
-
   transform: translateX(0rem);
 }
 
@@ -887,10 +891,72 @@ button.small
 /* TABS */
 @media screen and (max-width:1024px)
 {
-  header{
-    grid-template-columns: 5rem 1fr 3fr 5rem;
+  .main-header{
+    grid-template-columns: 5rem 3fr 3fr 5rem;
+    transition: all .3s;
   }
-  
+  .dropdown{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+   
+  }
+  .search {
+    transform: scaleX(0);
+    opacity: 0;
+    transition: all.3s;
+    transform-origin: 100% 0%;
+  }
+   .open-search{
+    transform: scaleX(1);
+    position: relative;
+    opacity: 1;
+  }
+  .search-icon{
+    display: block;
+    color:#66fcf1;
+    font-size: 2rem;
+    position: absolute;
+    right: 6rem;
+    transform: translateY(0rem);
+    transition: all.3s;
+  }
+  .up{
+    transform: translateY(-10rem);
+    width: 0;
+  }
+  .nav-links a:hover{
+    border-bottom:none;
+   padding:2rem;
+ }
+ 
+  .dropdown-small
+{
+  display: none;
+  transform: scaleY(0);
+   transition: all .2s;
+}
+.nameTag{
+pointer-events: none;
+}
+.dropdown:hover .down{
+  transform: rotate(0deg);
+}
+.down-rotate{
+  transform: rotate(180deg);
+  transition: all .2s;
+}
+.open-menu {
+  display: block;
+  position: static;
+  height: fit-content;
+ transform: scaleY(1);
+  border-radius: 2px;
+  width: 100%;
+  box-shadow: 0px 0px 2px 1px black inset;
+  height: fit-content;
+  background-color: transparent;
+}
    .logo
   {
    height: 100%;
@@ -913,12 +979,13 @@ button.small
      height: 8rem;
    }
    .onScroll{
-     height: 6rem;
+     height: 5.5rem;
    }
    .nav-main{
-     background-color: rgba(0, 0, 0, 0.479);
+    background-color: rgba(12, 11, 11, 0.856);
+    backdrop-filter: blur(3px);
      opacity: 0;
-     width: 100%;
+     width: 50%;
      display: block;
      top:0%;
      transform: translateX(100%); 
@@ -926,15 +993,18 @@ button.small
      padding: 0;
      height: 100vh;
      position: absolute;
+     right: 0;
    }
     .nav-links{
        
         flex-direction: column;
-        background-color: rgba(12, 11, 11, 0.772);
-       backdrop-filter: blur(3px);
-        width: 50%;       
-        height: 100%;
-        float:right;
+        height: fit-content;
+        margin-top: 5rem;
+     
+    }
+    .nav-links a {
+   
+      padding: 2rem;
     }
     .active{
       color:#ffffff;
@@ -964,17 +1034,27 @@ button.small
 
   @media screen and (max-width:767px)
 {
-  header{
-     grid-template-columns: 5rem 4fr 5rem;
+  .main-header{
+     grid-template-columns: 5rem 4fr 5rem 5rem;
+   
   }
-  .logo{
-    display: none;
+  .h-close{
+    grid-template-columns: 5rem 1rem 1fr 5rem;
   }
+  input{
+    width: 15rem;
+    padding:  .7rem 0;
+  }
+  
 }
 @media screen and (max-width:320px)
 {
   header{
      grid-template-columns:5rem 23rem 5rem;
+  }
+  input{
+    width: 12rem;
+    padding:  .5rem 0;
   }
  
 }
