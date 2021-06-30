@@ -716,7 +716,7 @@ li{
   border-top: .3rem solid grey;
   color :#c0c0c0;
   flex: 1;
-  padding: 1rem;
+  padding: 1rem 0;
   font-weight: bold;
 }
 .checkout-progress > div.active
@@ -1048,6 +1048,7 @@ pointer-events: none;
      grid-template-columns:  4fr 5rem 5rem;
    
   }
+ 
   .h-close{
     grid-template-columns:  1rem 1fr 5rem;
   }
@@ -1057,7 +1058,7 @@ pointer-events: none;
   }
   
 }
-@media screen and (max-width:320px)
+@media screen and (max-width:321px)
 {
   header{
      grid-template-columns:5rem 23rem 5rem;
@@ -1069,4 +1070,12 @@ pointer-events: none;
   .search-icon{
     right: 5rem;
   }
+  
+.checkout-progress > div{
+font-size: 1.2rem;
+}
+.min-30 {
+  min-width: 7rem;
+}
+
 }
