@@ -46,7 +46,7 @@ const PlaceOrderView = (props) => {
               <CheckOut step1 step2 step3 step4></CheckOut>
               <div className="row top">
                   <div className="col-2">
-                      <ul>
+                      <ul className="place-order">
                           <li>
                               <div className="card card-body">
                                   <h3>

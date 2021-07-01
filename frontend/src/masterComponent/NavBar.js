@@ -102,13 +102,13 @@ const NavBar = ({cartItems,userInfo,toggle}) => {
                 </div>
             )}
           
-            <Link to="/cart"  onClick={toggle}>
-            <i className="fa fa-shopping-cart cart"></i>
+            <Link to="/cart" className="cart-link"  onClick={toggle}>
+            <i className="fa fa-shopping-cart cart">
                 {
                     cartItems.length>0 &&
-                    <span className="cartBadge">{cartItems.length}</span>
+                    <span className="cartBadge"><div>{cartItems.length}</div></span>
                 }
-                
+                </i>
             </Link>
         </div>
         </div>

@@ -98,11 +98,12 @@ window.addEventListener("scroll", changeBack);
                 
                 <aside className={sideBarOpen? 'open':''}>
     <ul className="categories">
-      <li>
-        <strong>Categories</strong>
-        <button onClick={()=>setSideBarOpen(!sideBarOpen)} className="close-sidebar"
+    <button onClick={()=>setSideBarOpen(!sideBarOpen)} className={navbar?"close-sidebar":"close-sidebar scroll"}
         type="button"
         ><i className={!sideBarOpen?"fa fa-plus c1":"fa fa-plus c1 c2"}/></button>
+      <li>
+        <strong>Categories</strong>
+       
       </li>
       { 
                         loadingCategory?<LoadingBox/>

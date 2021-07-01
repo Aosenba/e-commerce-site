@@ -66,7 +66,10 @@ const CartView = (props) => {
                                    <li key={item.product}>
                                        <div className="row">
                                            <div>
-                                               <img className="small" src={item.image} alt={item.name}/>
+                                           <Link to={`product/${item.product}`}>
+                                           <img className="small" src={item.image} alt={item.name}/>
+                                               </Link>
+                                             
                                            </div>
                                            <div className="min-30">
                                                <Link to={`product/${item.product}`}>

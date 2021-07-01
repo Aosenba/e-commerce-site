@@ -9,8 +9,8 @@ import MessageBox from '../Home/MessageBox';
 import { PRODUCT_UPDATE_RESET } from '../constants/productConstants';
 
 const ProductEditView = (props) => {
-    const userDetails = useSelector(state=>state.userDetails);
-    const {user}= userDetails;
+
+
     const productId=props.match.params.id;
     const [name, setName] = useState('');
     const [image, setImage] = useState('');
@@ -25,12 +25,6 @@ const ProductEditView = (props) => {
  
     const productUpdate =useSelector(state=>state.productUpdate);
     const {loading:loadingUpdate,error:errorUpdate,success:successUpdate} = productUpdate;
-   console.log(user)
-    const submitHandler=(e)=>
-    {
-        e.preventDefault();
-        dispatch(updateProduct({_id:productId,name,price,image,category,brand,countInStock,description}));
-    };
 
     const userSignin = useSelector(state=>state.userSignin);
     const {userInfo}=userSignin;
@@ -80,6 +74,13 @@ const ProductEditView = (props) => {
         
        }
     },[product,dispatch,productId,props.history,successUpdate]);
+
+    
+    const submitHandler=(e)=>
+    {
+        e.preventDefault();
+        dispatch(updateProduct({_id:productId,name,price,image,category,brand,countInStock,description}));
+    };
 
     return (
        
