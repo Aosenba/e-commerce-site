@@ -215,7 +215,7 @@ aside li a{
   border-radius: 3px;
 }
 aside li a:hover{
-  transform: translateX(1rem);
+  transform: translateX(.5rem);
 }
 button.close-sidebar{
   font-size: 2rem;

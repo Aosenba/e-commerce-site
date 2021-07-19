@@ -96,7 +96,7 @@ window.addEventListener("scroll", changeBack);
                         <div className="l3"></div>
                 </div>
                 
-                <aside className={sideBarOpen? 'open':''}>
+  <aside className={sideBarOpen? 'open':''}>
     <ul className="categories">
     <button onClick={()=>setSideBarOpen(!sideBarOpen)} className={navbar?"close-sidebar":"close-sidebar scroll"}
         type="button"
