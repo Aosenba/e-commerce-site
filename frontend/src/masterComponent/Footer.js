@@ -35,7 +35,7 @@ const Footer = () => {
             
             </div>
        
-            <p>Copyright@2020</p>
+            <p>Copyright © 2020 Aosenba All rights reserved.</p>
         </div>
     )
 }
